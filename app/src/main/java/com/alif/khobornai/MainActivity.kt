@@ -12,6 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alif.khobornai.ui.theme.KhobornaiTheme
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import com.alif.khobornai.data.model.Newspaper
+import com.alif.khobornai.ui.screens.HomeScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,29 +23,18 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             KhobornaiTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    // Replace this with real scraped data later
+                    val sampleNewspapers = listOf(
+                        Newspaper("Prothom Alo", "2025-05-28", "https://placehold.co/600x400"),
+                        Newspaper("Daily Star", "2025-05-28", "https://placehold.co/600x400")
                     )
+                    HomeScreen(newspapers = sampleNewspapers)
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    KhobornaiTheme {
-        Greeting("Android")
     }
 }
